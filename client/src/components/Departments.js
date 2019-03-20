@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import DepartmentForm from './DepartmentForm'
 import { Link } from 'react-router-dom'
-import { Card, Header, Image, Button, Icon } from 'semantic-ui-react'
+import { Card, Header, Image, Button } from 'semantic-ui-react'
 
 export default class Departments extends React.Component {
     state = {
@@ -27,6 +27,19 @@ export default class Departments extends React.Component {
             })
     }
 
+    updateDepartment = (id) => {
+        axios.put(`/api/departments/${id}`, this.state.departments.name)
+            .then( res => {
+                const departments = this.state.departments.map( d => {
+                    if (d.id === id)
+                        return res.data
+                    return d
+                })
+                this.setState({ departments })
+            })
+        this.toggleEdit()
+    }
+
     renderDepartments = () => {
         const { departments } = this.state
 
@@ -39,7 +52,7 @@ export default class Departments extends React.Component {
                     <Card.Content>
                         {
                             this.state.editing ?
-                                <DepartmentForm name={department.name} id={department.id} />
+                                <DepartmentForm name={department.name} id={department.id} updateDepartment={this.updateDepartment} />
                             :
                                 <Card.Header as={Link} to={`/departments/${department.id}`} >{department.name}</Card.Header>
                         }

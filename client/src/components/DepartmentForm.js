@@ -17,12 +17,19 @@ export default class DepartmentForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        const { id, updateDepartment } = this.props
         const department = this.state
-        axios.post('/api/departments', department )
+        if (id) 
+            axios.put(`/api/departments/${id}`, department)
             .then( res => {
-                this.props.history.push('/')
+                updateDepartment(id)
             })
-            this.setState({ name: '' })
+        else
+            axios.post('/api/departments', department )
+                .then( res => {
+                    this.props.history.push('/')
+                })
+        this.setState({ name: '' })
     }
 
     render() {

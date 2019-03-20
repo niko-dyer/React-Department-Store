@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import { Card, Header } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Card, Header, Button } from 'semantic-ui-react'
 
 export default class Items extends React.Component {
     state = { items: [] }
@@ -33,6 +34,8 @@ export default class Items extends React.Component {
         return (
             <div>
                 <Header as='h1'>Items</Header>
+                <br />
+                <Button as={Link} to='/items/new'>Add Item</Button>
                 <br />
                 <Card.Group>
                     { this.renderItems() }

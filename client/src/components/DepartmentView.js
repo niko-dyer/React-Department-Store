@@ -14,7 +14,7 @@ export default class Department extends React.Component {
     }
 
     render() {
-        const { name, id } = this.state.department
+        const { name } = this.state.department
         return (
             <div>
                 <Header icon as='h1' textAlign='center'>
