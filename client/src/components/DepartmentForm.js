@@ -5,6 +5,11 @@ import { Form, Header } from 'semantic-ui-react'
 export default class DepartmentForm extends React.Component {
     state = { name: '' }
 
+    componentDidMount() {
+        if (this.props.id)
+            this.setState({ name: this.props.name })
+    }
+
     handleChange = (e) => {
         const { target: { name, value } } = e
         this.setState({ [name]: value })
@@ -23,7 +28,12 @@ export default class DepartmentForm extends React.Component {
     render() {
         return (
             <div>
-                <Header as='h1'>New Department</Header>
+                {
+                    this.props.id ?
+                        <div></div>
+                    :
+                        <Header as='h1'>New Department</Header>
+                }
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Input
                         label='Name'
