@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import DepartmentForm from './DepartmentForm'
 import { Link } from 'react-router-dom'
-import { Card, Header, Image, Button } from 'semantic-ui-react'
+import { Card, Header, Image, Button, Icon } from 'semantic-ui-react'
+import styled from 'styled-components'
 
 export default class Departments extends React.Component {
     state = {
@@ -28,7 +29,7 @@ export default class Departments extends React.Component {
     }
 
     updateDepartment = (department) => {
-        const departments = this.state.departments.map( d => {
+        const departments = this.state.departments.map(d => {
             if (d.id === department.id)
                 return department;
             return d
@@ -50,7 +51,7 @@ export default class Departments extends React.Component {
                         {
                             this.state.editing ?
                                 <DepartmentForm name={department.name} id={department.id} updateDepartment={this.updateDepartment} />
-                            :
+                                :
                                 <Card.Header as={Link} to={`/departments/${department.id}`} >{department.name}</Card.Header>
                         }
                     </Card.Content>
@@ -69,13 +70,19 @@ export default class Departments extends React.Component {
     render() {
         return (
             <div>
-                <Header as='h1'>Departments</Header>
+                <div as={WrapApp}>
+                    <Header as='h1' textAlign='center' icon>
+                        <Icon name='dollar sign' />
+                        Departments
+                    </Header>
+                    <hr />
+                    <br />
+                    <StyledButton as={Link} color='orange' inverted to='/departments/new'>
+                        Add Department
+                    </StyledButton>
+                </div>
                 <br />
-                <Button as={Link} color='orange' inverted to='/departments/new'>
-                    Add Department
-                </Button>
-                <br />
-                <hr />
+                {/* <hr /> */}
                 <Card.Group centered itemsPerRow={4}>
                     {this.renderDepartments()}
                 </Card.Group>
@@ -83,3 +90,26 @@ export default class Departments extends React.Component {
         )
     }
 }
+
+const WrapApp = styled.div`
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-top: 30px
+`
+
+const StyledButton = styled.div`
+    display: flex
+    background: #312d2d
+    color: white
+    padding: 15px 25px
+    justify-content: center
+    transition: background 0.2s ease
+    cursor: pointer
+
+    &:hover {
+    background: #0b0b0b
+    transition: background 0.2s ease
+    color: magenta
+    }
+`

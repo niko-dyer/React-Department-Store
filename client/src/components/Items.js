@@ -46,13 +46,11 @@ export default class Items extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header as='h1'>Items</Header>
+            <div as={divAlign}>
+                <FancyButton as={Link} to={`/departments/${this.props.departmentId}/item/new`}>Add Item</FancyButton>
+                <Header as={coolHeader}>Items</Header>
                 <br />
-                <Button as={Link} to={`/departments/${this.props.departmentId}/item/new`}>Add Item</Button>
-                <br />
-                <br />
-                <Card.Group>
+                <Card.Group centered>
                     { this.renderItems() }
                 </Card.Group>
             </div>
@@ -60,3 +58,41 @@ export default class Items extends React.Component {
     }
 }
 
+const coolHeader = styled.h1`
+    text-align: center;
+`
+
+const FancyButton = styled.div`
+    display: flex;
+    justify-content: center
+    align-items: center
+    position: relative;
+    padding: 20px 38px;
+    top: 0;
+    font-size: 30px;
+    border-radius: 4px;
+    border-bottom: 1px solid rgba( 28, 227, 125, 0.5 );
+    background: rgba( 22, 230, 137, 1 );
+    color: #fff;
+    box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );
+    transition: all 0.2s ease;
+  
+  &:hover {
+    top: -10px;
+    box-shadow: 0px 10px 10px rgba( 15, 165, 60, 0.2 );
+    color: #fff
+    transform: rotateX(20deg);
+  }
+  
+  &:active {
+    top: 0px;
+    box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.0 );
+    background: rgba( 20, 224, 133, 1 );
+  }
+`
+
+const divAlign = styled.div`
+  display: flex
+  justify-content: center
+  align-items: center
+`
