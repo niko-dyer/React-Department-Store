@@ -22,7 +22,7 @@ export default class DepartmentForm extends React.Component {
         if (id) 
             axios.put(`/api/departments/${id}`, department)
             .then( res => {
-                updateDepartment(id)
+                updateDepartment(res.data)
             })
         else
             axios.post('/api/departments', department )

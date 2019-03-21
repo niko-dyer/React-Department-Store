@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Items from './Items'
-import { Header, Icon, Button } from 'semantic-ui-react'
+import { Header, Icon } from 'semantic-ui-react'
 
 export default class Department extends React.Component {
     state = { department: {} }

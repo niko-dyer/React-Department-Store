@@ -27,16 +27,13 @@ export default class Departments extends React.Component {
             })
     }
 
-    updateDepartment = (id) => {
-        axios.put(`/api/departments/${id}`, this.state.departments.name)
-            .then( res => {
-                const departments = this.state.departments.map( d => {
-                    if (d.id === id)
-                        return res.data
-                    return d
-                })
-                this.setState({ departments })
-            })
+    updateDepartment = (department) => {
+        const departments = this.state.departments.map( d => {
+            if (d.id === department.id)
+                return department;
+            return d
+        })
+        this.setState({ departments });
         this.toggleEdit()
     }
 
