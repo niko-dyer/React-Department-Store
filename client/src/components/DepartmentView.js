@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Items from './Items'
-import { Header, Icon } from 'semantic-ui-react'
+import { StyledButton } from './../styles/Shared'
+import { Header, Icon, Button } from 'semantic-ui-react'
 
 export default class Department extends React.Component {
     state = { department: {} }
@@ -25,6 +27,8 @@ export default class Department extends React.Component {
                 <hr />
                 <br />
                 <Items departmentId={this.props.match.params.id} as='h3' />
+                <br />
+                <StyledButton as={Link} to='/'>Back</StyledButton>
             </div>
         )
     }
